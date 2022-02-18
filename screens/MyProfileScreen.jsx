@@ -31,14 +31,24 @@ function MyProfileScreen({ navigation }) {
         }, 1000);
         return () => clearInterval(scheduler);
     }, []);
-    return (React.createElement(View, { style: styles.container },
+    return (
+        <View style={styles.container}>
+            <Text>Hello, {firstName}!</Text>
+            <TouchableOpacity style={styles.link} onPress={onSignOutPress}>
+                <Text style={styles.linkText}>Sign out</Text>
+            </TouchableOpacity>
+            <Text>{sessionToken}</Text>
+        </View>
+    );
+}
+        {/* React.createElement(View, { style: styles.container },
         React.createElement(Text, { style: styles.title },
             "Hello ",
             firstName),
         React.createElement(TouchableOpacity, { onPress: onSignOutPress, style: styles.link },
             React.createElement(Text, { style: styles.linkText }, "Sign out")),
         React.createElement(Text, { style: styles.token }, sessionToken)));
-}
+} */}
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -18,9 +18,20 @@ export default function SignUpScreen({ navigation, }) {
             log("Error:> " + (err.errors ? err.errors[0].message : err));
         }
     };
-    return (React.createElement(View, { style: styles.container },
-        React.createElement(View, { style: styles.inputView },
-            React.createElement(TextInput, { value: code, style: styles.textInput, placeholder: "Code...", placeholderTextColor: "#000", onChangeText: (code) => setCode(code) })),
-        React.createElement(TouchableOpacity, { style: styles.primaryButton, onPress: onPress },
-            React.createElement(Text, { style: styles.primaryButtonText }, "Verify Email"))));
+    return (
+        <View style={styles.container}>
+            <View style={styles.inputView}>
+                <TextInput value={code} style={styles.textInput} placeholder="Verification code..." placeholderTextColor="#000" onChangeText={(code) => setCode(code)} />
+            </View>
+            <TouchableOpacity style={styles.primaryButton} onPress={onPress}>
+                <Text style={styles.primaryButtonText}>Verify Email</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }
+//         React.createElement(View, { style: styles.container },
+//         React.createElement(View, { style: styles.inputView },
+//             React.createElement(TextInput, { value: code, style: styles.textInput, placeholder: "Code...", placeholderTextColor: "#000", onChangeText: (code) => setCode(code) })),
+//         React.createElement(TouchableOpacity, { style: styles.primaryButton, onPress: onPress },
+//             React.createElement(Text, { style: styles.primaryButtonText }, "Verify Email"))));
+// }

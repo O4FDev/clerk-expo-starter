@@ -13,8 +13,11 @@
  import LinkingConfiguration from "./LinkingConfiguration";
  import { ClerkLoaded, useUser } from "@clerk/clerk-expo";
  export default function Navigation() {
-     return (React.createElement(NavigationContainer, { linking: LinkingConfiguration },
-         React.createElement(RootNavigator, null)));
+     return (
+         <NavigationContainer linking={LinkingConfiguration}>
+                <RootNavigator />
+            </NavigationContainer>
+        );
  }
  const Stack = createNativeStackNavigator();
  /**
@@ -26,9 +29,32 @@
      const { user, isSignedOut } = useUser({
          withAssertions: true,
      });
-     return (React.createElement(ClerkLoaded, null,
-         React.createElement(Stack.Navigator, null, isSignedOut(user) ? (React.createElement(React.Fragment, null,
-             React.createElement(Stack.Screen, { name: "SignUp", component: SignUpScreen, options: { title: "Sign Up" } }),
-             React.createElement(Stack.Screen, { name: "SignIn", component: SignInScreen, options: { title: "Sign In" } }),
-             React.createElement(Stack.Screen, { name: "VerifyCode", component: VerifyCodeScreen, options: { title: "Sign Up" } }))) : (React.createElement(Stack.Screen, { name: "MyProfile", component: MyProfileScreen, options: { title: "MyProfile" } })))));
- };
+     return (
+         <ClerkLoaded>
+                <Stack.Navigator
+                    // isSignedOut
+                    screenOptions={{
+                        headerShown: true,
+                    }}
+                >
+                    {isSignedOut ? (
+                        <>
+                            <Stack.Screen name="SignIn" component={SignInScreen} />
+                            <Stack.Screen name="SignUp" component={SignUpScreen} />
+                            <Stack.Screen name="VerifyCode" component={VerifyCodeScreen} />
+                        </>
+                    ) : (
+                        <>
+                            <Stack.Screen name="MyProfile" component={MyProfileScreen} />
+                        </>
+                    )}
+                </Stack.Navigator>
+            </ClerkLoaded>
+        );
+ }
+//          React.createElement(ClerkLoaded, null,
+//          React.createElement(Stack.Navigator, null, isSignedOut(user) ? (React.createElement(React.Fragment, null,
+//              React.createElement(Stack.Screen, { name: "SignUp", component: SignUpScreen, options: { title: "Sign Up" } }),
+//              React.createElement(Stack.Screen, { name: "SignIn", component: SignInScreen, options: { title: "Sign In" } }),
+//              React.createElement(Stack.Screen, { name: "VerifyCode", component: VerifyCodeScreen, options: { title: "Sign Up" } }))) : (React.createElement(Stack.Screen, { name: "MyProfile", component: MyProfileScreen, options: { title: "MyProfile" } })))));
+//  };
