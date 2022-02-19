@@ -36,7 +36,7 @@ export default function SignUpScreen({ navigation, }) {
                 <TextInput value={lastName} style={styles.textInput} placeholder="Last name..." placeholderTextColor="#000" onChangeText={(lastName) => setLastName(lastName)} />
             </View>
             <View style={styles.inputView}>
-                <TextInput value={emailAddress} style={styles.textInput} placeholder="Email..." placeholderTextColor="#000" onChangeText={(emailAddress) => setEmailAddress(emailAddress)} />
+                <TextInput value={emailAddress} style={styles.textInput} autoCapitalize="none" placeholder="Email..." placeholderTextColor="#000" onChangeText={(emailAddress) => setEmailAddress(emailAddress)} />
             </View>
             <View style={styles.inputView}>
                 <TextInput value={password} style={styles.textInput} placeholder="Password..." placeholderTextColor="#000" secureTextEntry={true} onChangeText={(password) => setPassword(password)} />

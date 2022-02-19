@@ -16,7 +16,7 @@ export default function App() {
     }
     else {
         return (
-            <ClerkProvider tokenCache={tokenCache} frontendApi={frontendApi}>
+            <ClerkProvider frontendApi={frontendApi} tokenCache={tokenCache}>
                 <SafeAreaProvider>
                     <Navigation />
                     <StatusBar />

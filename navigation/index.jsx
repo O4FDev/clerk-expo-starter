@@ -37,7 +37,7 @@
                         headerShown: true,
                     }}
                 >
-                    {isSignedOut ? (
+                    {isSignedOut(user) ? (
                         <>
                             <Stack.Screen name="SignIn" component={SignInScreen} />
                             <Stack.Screen name="SignUp" component={SignUpScreen} />
